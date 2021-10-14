@@ -28,7 +28,7 @@
           "lookup": "properties.NAME",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/linhtran25/Visualisation2/main/data2.csv"
+              "url": "https://raw.githubusercontent.com/linhtran25/vis2/master/data/data4.csv"
             },
             "key": "Country",
             "fields": ["Unemployment"]
