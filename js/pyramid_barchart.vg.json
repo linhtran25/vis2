@@ -18,7 +18,7 @@
       "column": {
           "field": "Year",
           "type": "ordinal",
-          "spacing": 10,
+          "spacing": 5,
           "header": {
               "orient": "bottom"
           }
