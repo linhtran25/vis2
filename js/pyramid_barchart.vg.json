@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "background": "#f5f5f5",
+  "background": "#F0F8FF",
   "data": {
       "url": "https://raw.githubusercontent.com/linhtran25/Visualisation2/main/data3.csv"
   },
@@ -46,11 +46,11 @@
       }
   },
   "config": {
-      "view": {
-          "stroke": "transparent"
-      },
-      "axis": {
-          "domainWidth": 1
-      }
+    "view": {"stroke": null},
+    "axis": {
+        "grid": false,
+        "labelFontSize": 13,
+        "titleFontSize": 15},
+    "font": "Maven Pro"
   }
 }

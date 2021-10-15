@@ -1,60 +1,117 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Unemployment Rate per Country 2020",
-  "width": 800,
+  "background": "#F0F8FF",
+  "title": "Unemployment Rate per Country 2008-2020",
+  "width": 1200,
   "height": 600,
-  "data": {
-    "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
-    "format": {
-          "type": "topojson",
-          "feature": "ne_110m_admin_0_countries"
-        }
-  },
-  "layer":[
+  "projection": {"type": "equirectangular"},
+
+  "params": [
     {
-      "transform": [
-        {"calculate": "'Data is not available in ' + datum.properties.NAME", "as": "note"}
-      ],
-      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
-      "encoding": {
-        "tooltip": {
-          "field": "note"
-        }
+      "name": "Gender_selection",
+      "value": "Male",
+      "bind": {
+        "input": "select",
+        "options": [
+          
+          "Male",
+          "Female"
+        ],
+        "labels": [
+          
+          "Male",
+          "Female"
+        ],
+        "name": "Gender selection: "
       }
     },
     {
-      "transform": [
-        {
-          "lookup": "properties.NAME",
-          "from": {
-            "data": {
-              "url": "https://raw.githubusercontent.com/linhtran25/vis2/master/data/data4.csv"
-            },
-            "key": "Country",
-            "fields": ["Unemployment"]
-          }
-        }
-      ],
-      "projection": {
-        "type": "equirectangular"
-      },
-      "mark": {
-        "type": "geoshape"
-        },
-      "encoding": {
-        "color": {
-          "field": "Unemployment",
-          "type": "quantitative",
-          
-          "scale": {"type": "log"}
-    
-        },
-        "tooltip": [
-          {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-          {"field": "Unemployment", "type": "quantitative"}
-        ]
+      "name": "Year_selection",
+      "value": "2020",
+      "bind": {
+        "input": "range",
+        "min": 2008,
+        "max": 2020,
+        "step": 1,
+        "name": "Year Selection: "
       }
     }
-  ]
-  
+  ],
+ 
+  "data": {
+    "url": "https://raw.githubusercontent.com/linhtran25/Visualisation2/main/data6.csv"
+  },
+  "layer":[
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/pdmntrang/data-visualisation/main/js/ne_110m_admin_0_countries.topojson",
+        "format": {
+          "type": "topojson", 
+          "feature": "ne_110m_admin_0_countries"}
+      },
+      "transform": [
+        {"calculate": "'Data is not available in ' + datum.properties.NAME", "as": "note"}
+        ],
+        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+        "encoding": {
+          "tooltip": {
+            "field": "note"
+          }
+        }
+      },
+    {"transform": [
+      {"lookup": "Country",
+        "from": {
+          "data": {
+            "url": "https://raw.githubusercontent.com/pdmntrang/data-visualisation/main/js/ne_110m_admin_0_countries.topojson",
+            "format": {
+              "type": "topojson", 
+              "feature": "ne_110m_admin_0_countries"}
+          },
+          "key": "properties.NAME"
+        },
+        "as": "geo"
+      },
+      {"filter": "Gender_selection == null || datum.Sex == Gender_selection"},
+      {"filter": "datum.Year == Year_selection"}
+    ],
+  "mark": {"type": "geoshape","stroke": "black", "strokeWidth": 0.3},
+  "encoding": {
+    "shape": {
+      "field": "geo",
+      "type": "geojson"
+    },
+    "color": {
+      "field": "Unemployment",
+      "type": "quantitative",
+      "legend": {
+        "format": ".0f",
+        "title": "Unemployment Rate per Country 2008-2020"},
+        "scale": {
+        "type": "threshold",
+        "domain": [2, 4, 6, 8, 10, 12, 14, 16, 18],
+        "scheme": "redblue",
+        "reverse": true
+        
+      }
+    },
+    "tooltip": [
+      {"field": "Country", "type": "nominal", "title": "Country"},
+      {"field": "Unemployment", "type": "quantitative", "title": "Unemployment Rate per Country 2008-2020", "format": ".2f"}
+    ]
+  }
+}],
+  "config": {
+    "font": "Maven Pro",
+    "legend": {
+      "titleFontSize": 15,
+      "labelFontSize": 13,
+      "orient": "none",
+      "direction": "horizontal",
+      "legendX": 650,
+      "legendY": 400,
+      "titleOrient": "left",
+      "titleLimit": 300
+  }
+  }
 }

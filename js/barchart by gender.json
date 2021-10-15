@@ -24,11 +24,24 @@
     },
     "color": {
       "field": "gender",
-      "scale": {"range": ["#675193", "#ca8861"]}
-    }
+      "scale": {"domain": [0,140]}
+    },
+    "tooltip": [
+      {
+        "field": "unemployment", 
+        "aggregate": "average",
+        "title": "Unemployment Rate", 
+        "type": "quantitative", 
+        "format": ".2f"}
+    ]
   },
   "config": {
-    "view": {"stroke": "transparent"},
-    "axis": {"domainWidth": 1}
+    "view": {"stroke": null},
+    "axis": {
+        "grid": false,
+        "labelFontSize": 13,
+        "titleFontSize": 15},
+    "font": "Maven Pro"
   }
-}
+  }
+

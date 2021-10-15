@@ -1,16 +1,90 @@
-#choropleth_map {
+
+h1{
+    font-weight: bolder;
+    text-align: center;
+    padding: 40px;
+    font-family: 'Maven Pro', sans-serif;
+    text-align: center;
+    background-color: #ADD8E6;
+    font-size: 50px;
 }
 
+h6{
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    background-color: #ADD8E6;
+    font-size: 15px;
+    text-align: center;
+    margin-top: -50px;
+    padding-bottom: 20px;
+}
+
+h2{
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 25px;
+    padding: 10px;
+    background-color: #F0F8FF;
+    text-align: left;
+    
+}
+
+.container{
+    width: 100%;
+}
+
+.vega-bindings{
+    font-family: 'Maven Pro', sans-serif;
+    margin-left: 200px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+p{
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 16px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.vis-container {
+    width: 100%;
+    align-self: center;
+}
+
+.pure-g {
+    margin-bottom: 25px;
+    align-self: center;
+}
+
+.page {
+    width: 1200px;
+    background-color: #F0F8FF;
+    margin: auto;
+    padding: 50px;
+    padding-top: 35px;
+}
+
+.description {
+    margin-left: 20px;
+}
+
+.small-font {
+    font-size: 14px;
+}
+
+.center {
+    text-align: center;
+}
+
+.emphasise {
+    font-size: 18px;
+    color: #ee6c4d;
+}
 .body{
 	display:flex;
 	width:100vw;
 	height:100vh;
 	flex-direction:column;
 	align-items:center;
-}
-
-.title{
-	margin:20px;
-	font-size: 36px;
-	font-weight: bold;
 }

@@ -1,0 +1,135 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background": "#F0F8FF",
+    "params": [
+    {
+      "name": "Gender_selection",
+      "value": "Male",
+      "bind": {
+        "input": "select",
+        "options": [
+          
+          "Male",
+          "Female"
+        ],
+        "labels": [
+          
+          "Male",
+          "Female"
+        ],
+        "name": "Gender selection: "
+      }
+    }],
+    "hconcat": [
+      {
+        "width": 400,
+        "height": 300,
+        "data": {"url": "https://raw.githubusercontent.com/linhtran25/Visualisation2/main/data6.csv"},
+         "transform": [
+            {"filter": "Gender_selection == null || datum.Sex == Gender_selection"}
+            ],
+        "encoding": {
+            "x": {
+                "field": "Year",
+                "axis": {"labelAngle": 0}}},
+                "layer": [
+            {
+            "encoding": {
+            "y": {
+                "field": "Unemployment", 
+                "type": "quantitative", 
+                "aggregate": "average",
+                "title": "Unemployment Rate"},
+            "color": {
+                "field": "Region",
+                "type": "nominal",
+                "scale": {
+                "domain": [
+                    "East Asia & Pacific",
+                    "Europe & Central Asia",
+                    "Latin America & Caribbean",
+                    "Middle East & North Africa",
+                    "North America",
+                    "South Asia",
+                    "Sub-Saharan Africa"
+                ],
+                "range": [
+                    "#9c6644",
+                    "#ffc300",
+                    "#f28482",
+                    "#cdb4db",
+                    "#e29578",
+                    "#5390d9",
+                    "#FF00FF"
+                ]
+                }}
+            },
+            "layer": [
+            {"mark": 
+                {
+                "type": "line",
+                "size": 10}},
+            {"transform": [
+                {"filter": 
+                {"param": "hover", 
+                    "empty": false}}],
+                "mark": "point"}
+            ]
+        },
+        {
+            "transform": [
+            {"pivot": "Region", "value": "Unemployment", "groupby": ["Year"], "op": "average"}
+            ],
+            "mark": {
+            "type": "rule",
+            "size": 10},
+            "encoding": {
+            "opacity": {
+                "condition": {"value": 0.5, "param": "hover", "empty": false},
+                "value": 0
+            },
+            "tooltip": [
+                {"field": "East Asia & Pacific", "type": "quantitative", "title": "Africa suicide Unemployment Rate)", "format": ".2f"},
+                {"field": "Europe & Central Asia", "type": "quantitative", "title": "Americas suicide Unemployment Rate", "format": ".2f"},
+                {"field": "Latin America & Caribbean", "type": "quantitative", "title": "Eastern Mediterranean Unemployment Rate", "format": ".2f"},
+                {"field": "Middle East & North Africa", "type": "quantitative", "title": "Europe  Unemployment Rate", "format": ".2f"},
+                {"field": "South Asia", "type": "quantitative", "title": "South-East Asia Unemployment Rate", "format": ".2f"},
+                {"field": "Sub-Saharan Africa", "type": "quantitative", "title": "Western Pacific Unemployment Rate)", "format": ".2f"},
+                {"field": "North America", "type": "quantitative", "title": "North America Unemployment Rate", "format": ".2f"}
+            ]
+            },
+            "params": [{
+            "name": "hover",
+            "select": {
+                "type": "point",
+                "fields": ["Year"],
+                "nearest": true,
+                "on": "mouseover",
+                "clear": "mouseout"
+            }
+            }]
+        }
+        ]
+        }
+        ],
+  "config": {
+    "font": "Maven Pro",
+    "axis": {
+      "labelFontSize": 14,
+      "titleFontSize": 15
+  },
+    "legend": {
+        "titleFontSize": 15,
+        "labelFontSize": 14,
+        "orient": "none",
+        "direction": "horizontal",
+        "legendX": 200,
+        "legendY": 400,
+        "titleAnchor": "start",
+        "titleOrient": "left",
+        "columns": 3,
+        "columnPadding": 16
+    }
+  }
+  }
+  
